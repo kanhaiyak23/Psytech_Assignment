@@ -1,12 +1,28 @@
+# Installation
 
-# Hosted Project Link Test 1: Coding (Frontend + Optional Full-Stack)
-```bash
-https://psytech-assignment.vercel.app/
+To get started with this project, follow these steps:
 
+ 1. Clone the repository:
+   ```bash
+   git clone https://github.com/kanhaiyak23/Psytech_Assignment
+```
+ 2. Install dependencies:
+ ```bash
+    npm install
 ```
 
-# Hosted Project Link Test 3: Creativity (Frontend)
+3. To start the project, run the following command:
 ```bash
-https://psytech-assignment-8ogw.vercel.app/
-
+  npm start 
 ```
+<div>
+  <h2><strong>Hosted Project Link Test 1: Coding (Frontend + Optional Full-Stack)</strong></h2>
+  <pre><code>
+    https://psytech-assignment.vercel.app/
+  </code></pre>
+
+  <h2><strong>Hosted Project Link Test 3: Creativity (Frontend)</strong></h2>
+  <pre><code>
+    https://psytech-assignment-8ogw.vercel.app/
+  </code></pre>
+</div>
