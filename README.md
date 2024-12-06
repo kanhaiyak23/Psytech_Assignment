@@ -20,6 +20,11 @@ To get started with this project, follow these steps:
   <pre><code>
     https://psytech-assignment.vercel.app/
   </code></pre>
+  Test 2: Prototyping (Mocks)
+  <h2><strong>Hosted Project Link  Test 2: Prototyping (Mocks)</strong></h2>
+  <pre><code>
+    https://psytech-assignment-modeling.vercel.app/
+  </code></pre>
 
   <h2><strong>Hosted Project Link Test 3: Creativity (Frontend)</strong></h2>
   <pre><code>
