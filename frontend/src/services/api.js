@@ -4,7 +4,7 @@ import axios from 'axios';
 const ALPHA_VANTAGE_API_KEY = '00VYW2Z8CRR35UZO';
 const BASE_URL = 'https://www.alphavantage.co/query';
 
-// Mock data for when API hits rate limit
+
 const MOCK_DATA = {
   'AAPL': {
     symbol: 'AAPL',
@@ -110,7 +110,7 @@ export const fetchStockData = async (symbol) => {
   } catch (error) {
     console.log('API rate limit reached, using mock data');
     
-    // If the symbol exists in mock data, return it
+
     if (symbol in MOCK_DATA) {
       return MOCK_DATA[symbol];
     }
@@ -179,106 +179,3 @@ const fetchNewsData = async (symbol) => {
 
 
 
-//
-// import axios from 'axios';
-
-
-// const YAHOO_FINANCE_API = 'https://query1.finance.yahoo.com/v8/finance/chart/';
-// const NEWS_API = 'https://newsapi.org/v2/everything';
-// const NEWS_API_KEY = '315d26492e924a62a3d147aa5850d18f'; // You would need to get a free API key from newsapi.org
-
-// export const fetchStockData = async (symbol) => {
-//   try {
-//     const [quote, history, news] = await Promise.all([
-//       fetchQuote(symbol),
-//       fetchHistoricalPrices(symbol),
-//       fetchNewsData(symbol),
-//     ]);
-
-//     return {
-//       symbol,
-//       companyName: quote.shortName,
-//       price: quote.regularMarketPrice,
-//       peRatio: quote.forwardPE || 0,
-//       eps: quote.epsTrailingTwelveMonths || 0,
-//       marketCap: quote.marketCap,
-//       dividendYield: quote.dividendYield || 0,
-//       historicalPrices: history,
-//       news,
-//     };
-//   } catch (error) {
-//     console.error('Error fetching stock data:', error);
-//     throw new Error('Failed to fetch stock data');
-//   }
-// };
-
-// const fetchQuote = async (symbol) => {
-//   const response = await axios.get(`https://query1.finance.yahoo.com/v10/finance/quoteSummary/${symbol}`, {
-//     params: {
-//       modules: 'price,defaultKeyStatistics,summaryDetail',
-//     },
-//   });
-  
-//   const quoteSummary = response.data.quoteSummary.result[0];
-//   return {
-//     ...quoteSummary.price,
-//     ...quoteSummary.defaultKeyStatistics,
-//     ...quoteSummary.summaryDetail,
-//   };
-// };
-
-// const fetchHistoricalPrices = async (symbol) => {
-//   const endDate = Math.floor(Date.now() / 1000);
-//   const startDate = endDate - 365 * 24 * 60 * 60; // One year ago
-
-//   const response = await axios.get(`${YAHOO_FINANCE_API}${symbol}`, {
-//     params: {
-//       period1: startDate,
-//       period2: endDate,
-//       interval: '1d',
-//     },
-//   });
-
-//   const { timestamp, indicators } = response.data.chart.result[0];
-//   const quotes = indicators.quote[0];
-
-//   return timestamp.map((time, index) => ({
-//     date: new Date(time * 1000).toISOString().split('T')[0],
-//     price: quotes.close[index],
-//   })).filter((item) => item.price !== null);
-// };
-
-// // For demonstration, we'll generate mock news data since we don't have a news API key
-// const fetchNewsData = async (symbol) => {
-//   // In a real application, you would use the NEWS_API with your API key
-//   // const response = await axios.get(NEWS_API, {
-//   //   params: {
-//   //     q: symbol,
-//   //     apiKey: NEWS_API_KEY,
-//   //     language: 'en',
-//   //     sortBy: 'publishedAt',
-//   //   },
-//   // });
-
-//   // For demo purposes, return mock news data
-//   return [
-//     {
-//       title: `Latest developments for ${symbol}`,
-//       url: 'https://example.com/news/1',
-//       sentiment: 'positive',
-//       date: new Date().toISOString(),
-//     },
-//     {
-//       title: `Market analysis of ${symbol}`,
-//       url: 'https://example.com/news/2',
-//       sentiment: 'neutral',
-//       date: new Date(Date.now() - 86400000).toISOString(),
-//     },
-//     {
-//       title: `Industry impact on ${symbol}`,
-//       url: 'https://example.com/news/3',
-//       sentiment: 'positive',
-//       date: new Date(Date.now() - 172800000).toISOString(),
-//     },
-//   ];
-// };
