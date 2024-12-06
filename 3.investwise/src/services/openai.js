@@ -1,9 +1,9 @@
-import OpenAI from 'openai';
+import Anthropic from '@anthropic-ai/sdk';
 
-// apiKey: import.meta.env.VITE_OPENAI_API_KEY
-const openai = new OpenAI({
-  apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-  dangerouslyAllowBrowser: true
+const anthropic = new Anthropic({
+  apiKey: "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",
+  dangerouslyAllowBrowser: true,
+   // Use environment variable for security
 });
 
 export async function generateInvestmentInsights(decision) {
@@ -25,23 +25,22 @@ export async function generateInvestmentInsights(decision) {
   `;
 
   try {
-    const response = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+    const msg = await anthropic.messages.create({
+      model: "claude-3-5-sonnet-20241022", // Ensure you use the correct model version
+      max_tokens: 150,
       messages: [
         {
           role: "system",
-          content: "You are an experienced investment advisor providing concise, practical insights."
+          content: "You are an experienced investment advisor providing concise, practical insights.",
         },
         {
           role: "user",
-          content: prompt
-        }
+          content: prompt,
+        },
       ],
-      temperature: 0.7,
-      max_tokens: 150
     });
 
-    return response.choices[0]?.message?.content || "Unable to generate insights at this time.";
+    return msg.completion || "Unable to generate insights at this time.";
   } catch (error) {
     console.error('Error generating insights:', error);
     return "Unable to generate insights at this time.";

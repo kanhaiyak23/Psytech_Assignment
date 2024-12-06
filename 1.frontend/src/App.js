@@ -9,6 +9,7 @@ import { StockPitchGenerator } from './components/StockPitchGenerator';
 import { fetchStockData } from './services/api';
 
 
+
 function App() {
   const [symbol, setSymbol] = useState('');
 
@@ -26,7 +27,9 @@ function App() {
   };
 
   return (
+    
     <Box sx={{ minHeight: '100vh', bgcolor: 'grey.100', py: 4 }}>
+      
       <Container maxWidth="lg">
         <Box sx={{ textAlign: 'center', mb: 6 }}>
           <Typography variant="h3" component="h1" gutterBottom>

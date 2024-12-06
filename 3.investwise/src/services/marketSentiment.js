@@ -1,9 +1,8 @@
-import OpenAI from 'openai';
+import Anthropic from '@anthropic-ai/sdk';
 
-
-const openai = new OpenAI({
-  apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-  dangerouslyAllowBrowser: true
+const anthropic = new Anthropic({
+  apiKey: "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",
+  dangerouslyAllowBrowser: true, // Ensure you use the correct environment variable
 });
 
 export async function analyzeMarketSentiment(symbol) {
@@ -18,8 +17,9 @@ export async function analyzeMarketSentiment(symbol) {
   `;
 
   try {
-    const response = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+    const msg = await anthropic.messages.create({
+      model: "claude-3-5-sonnet-20241022", // Model name, ensure it's the right version
+      max_tokens: 100,
       messages: [
         {
           role: "system",
@@ -30,11 +30,9 @@ export async function analyzeMarketSentiment(symbol) {
           content: prompt
         }
       ],
-      temperature: 0.7,
-      max_tokens: 100
     });
 
-    return response.choices[0]?.message?.content || "Unable to analyze market sentiment at this time.";
+    return msg.completion || "Unable to analyze market sentiment at this time.";
   } catch (error) {
     console.error('Error analyzing market sentiment:', error);
     return "Unable to analyze market sentiment at this time.";
